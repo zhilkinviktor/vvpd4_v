@@ -51,6 +51,31 @@ def maclaurin_ln(x: float, iterations: int = 10) -> float:
     return result
 
 
+def maclaurin_binomial(x: float, m: float, iterations: int = 10) -> float:
+    """
+    Вычисляет (1 + x)^m через ряд Маклорена.
+
+    Аргументы:
+        x (float): значение x.
+        m (float): степень m.
+        iterations (int): количество итераций для точности вычислений.
+
+    Возвращаемое значение:
+        float: значение (1 + x)^m.
+
+    Исключения:
+        ValueError: если iterations <= 0.
+    """
+    if iterations <= 0:
+        raise ValueError("Количество итераций должно быть больше 0.")
+
+    result = 0
+    for n in range(iterations):
+        term = math.comb(m, n) * (x ** n)
+        result += term
+    return result
+
+
 def main_menu():
     """
     Главное меню программы для вычисления функций.
