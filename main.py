@@ -49,3 +49,45 @@ def maclaurin_ln(x: float, iterations: int = 10) -> float:
         term = ((-1) ** (n + 1)) * ((x - 1) ** n) / n
         result += term
     return result
+
+
+def main_menu():
+    """
+    Главное меню программы для вычисления функций.
+    """
+    while True:
+        print("\nМеню")
+        print("1. Вычислить sinh(x)")
+        print("2. Вычислить ln(x - 1)")
+        print("3. Вычислить (1 + x)^m")
+        print("4. Выход")
+
+        choice = input("Введите номер операции: ")
+        if choice == "1":
+            try:
+                x = float(input("Введите x: "))
+                result = maclaurin_sinh(x)
+                print(f"Результат: sinh({x}) = {result}")
+            except ValueError as e:
+                print(f"Ошибка: {e}")
+        elif choice == "2":
+            try:
+                x = float(input("Введите x (x > 1): "))
+                result = maclaurin_ln(x)
+                print(f"Результат: ln({x} - 1) = {result}")
+            except ValueError as e:
+                print(f"Ошибка: {e}")
+        elif choice == "3":
+            try:
+                x = float(input("Введите x: "))
+                m = float(input("Введите m: "))
+                result = maclaurin_binomial(x, m)
+                print(f"Результат: (1 + {x})^{m} = {result}")
+            except ValueError as e:
+                print(f"Ошибка: {e}")
+        elif choice == "4":
+            print("Выход из программы.")
+            break
+        else:
+            print("Некорректный ввод. Попробуйте снова.")
+
